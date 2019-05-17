@@ -1,0 +1,17 @@
+@import 'setup/normalize.scss';
+
+@import 'setup/mixins.scss';
+@import 'setup/themes';
+@import 'setup/typography.scss';
+@import 'setup/variables.scss';
+
+html {
+  // box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+  color: blue;
+}
+
+* {
+  color: blue;
+  // margin: 100px;
+}
