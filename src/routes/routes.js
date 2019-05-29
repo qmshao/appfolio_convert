@@ -13,6 +13,7 @@
 const Home = () => import('../views/Home.vue');
 const Dashboard = () => import('../views/Dashboard/Dashboard.vue');
 const Coin = () => import('../views/CoinSummary/CoinsSummary.vue');
+const CoinDetail = () => import('../views/CoinDetail/CoinDetail.vue');
 const Wallet = () => import('../views/Wallet/Wallet.vue');
 const About = () => import('../views/About.vue');
 const routes = [
@@ -33,13 +34,15 @@ const routes = [
     component: Coin,
   },
   {
-    path: '/coin/rvn',
+    path: '/coin/:coin',
     name: 'coinDetail',
-    component: About,
+    props: true,
+    component: CoinDetail,
   },
   {
-    path: '/wallet',
+    path: '/wallet/:wallet?',
     name: 'wallet',
+    props: true,
     component: Wallet,
   },
   {

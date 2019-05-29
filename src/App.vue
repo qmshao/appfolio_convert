@@ -3,8 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/dashboard">Dashboard</router-link>|
-      <router-link to="/coin">Coin</router-link>
-|
+      <router-link to="/coin">Coin</router-link>|
       <router-link to="/wallet">Wallet</router-link>|
       <router-link to="/about">About</router-link>
     </div>
@@ -25,7 +24,7 @@
   a {
     font-weight: bold;
     color: #2c3e50;
-    &.router-link-exact-active {
+    &.router-link-active {
       color: #42b983;
     }
   }

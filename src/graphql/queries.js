@@ -13,9 +13,7 @@ export const COINS = gql`
       coin_type
       pool_luck
       relative_profit
-      # block_data {
-      #   blocks_1d
-      # }
+
       network_hashrate
     }
   }
@@ -47,14 +45,14 @@ export const COINDETAIL = gql`
       link_explorer
       mature_blocks
       # blocks_24h
-      block_data {
-        timesincelast
-        lastblockheight
-        blocks_1h
-        blocks_1d
-        blocks_7d
-        blocks_30d
-      }
+      # block_data {
+      #   timesincelast
+      #   lastblockheight
+      #   blocks_1h
+      #   blocks_1d
+      #   blocks_7d
+      #   blocks_30d
+      # }
       blocks {
         height
         difficulty
@@ -81,8 +79,9 @@ export const WALLET = gql`
       }
 
       hashrate_24h {
-        time
+        timestamp
         hashrate
+        share_count
       }
       workers {
         id
@@ -96,7 +95,10 @@ export const WALLET = gql`
         es
         hashrate
         reject
-        hashrate_24h
+        hashrate_24h {
+          hashrate
+          timestamp
+        }
       }
       earnings {
         id

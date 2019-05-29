@@ -56,7 +56,7 @@ export default new Vuex.Store({
     coinDetailStatus: 0,
     walletDetail: {},
     walletStatus: 0,
-    walletsCache: []
+    walletsCache: [],
   },
   mutations: {
     saveCoins(state, payload) {
@@ -80,20 +80,20 @@ export default new Vuex.Store({
       // save the wallets back to local storage and set the state
       localStorage.setItem('wallets', JSON.stringify(wallets));
       state.walletsCache = wallets;
-    }
+    },
   },
   actions: {
     async fetchCoinsSummary({ commit, state }) {
       // fetches information on all of the coins
       const res = await apollo.query({
-        query: COINS
+        query: COINS,
       });
       console.log(res.data.qCoins);
       // let coinsSummary = res.data.qCoins.slice(0);
       let coinsSummary = res.data.qCoins;
 
       commit('saveCoins', {
-        coinsSummary: coinsSummary
+        coinsSummary: coinsSummary,
       });
     },
     async fetchCoinDetail({ commit, state }, payload) {
@@ -101,7 +101,7 @@ export default new Vuex.Store({
       let coinDetailStatus = 0; // no wallet selected
       commit('saveCoinDetail', {
         coinDetail,
-        coinDetailStatus // no wallet selected
+        coinDetailStatus, // no wallet selected
       });
 
       // if a coin is to be searched
@@ -110,17 +110,19 @@ export default new Vuex.Store({
         coinDetailStatus = 2;
         commit('saveCoinDetail', {
           coinDetail,
-          coinDetailStatus
+          coinDetailStatus,
         });
         // get detail information including blocks from one coin
+        console.log(payload.coinDetail);
         const res = await apollo.query({
           query: COINDETAIL,
-          variables: { coinSymbol: payload.coinDetail }
+          variables: { coinSymbol: payload.coinDetail },
         });
 
         // if the coin is found, set the coindetail to the new object
         // else set coindetailstatus to not found and clear the coin
         if (res.errors) {
+          console.log(res.errors);
           //console.log('Coin Not Found');
           coinDetailStatus = -1;
         } else {
@@ -132,7 +134,7 @@ export default new Vuex.Store({
       // regardles if coin found or not, save to coin detail
       commit('saveCoinDetail', {
         coinDetail,
-        coinDetailStatus
+        coinDetailStatus,
       });
     },
     async fetchWallet({ commit, state }, payload) {
@@ -140,7 +142,7 @@ export default new Vuex.Store({
       let walletStatus = 0; // no wallet selected
       commit('saveWalletDetail', {
         wallet,
-        walletStatus // no wallet selected
+        walletStatus, // no wallet selected
       });
 
       // if a wallet is to be fetched ( it will be if we call fetch wallet)
@@ -149,13 +151,13 @@ export default new Vuex.Store({
         walletStatus = 2;
         commit('saveWalletDetail', {
           wallet,
-          walletStatus
+          walletStatus,
         });
 
         // fetch wallet from backend
         const res = await apollo.query({
           query: WALLET,
-          variables: { wallet: payload.wallet }
+          variables: { wallet: payload.wallet },
         });
 
         // if a wallet is found, set the wallet to the new object
@@ -174,13 +176,13 @@ export default new Vuex.Store({
       // regardless if found or not, save the current wallet to state
       commit('saveWalletDetail', {
         wallet,
-        walletStatus
+        walletStatus,
       });
 
       // update the wallets saved in state from the localstorage
       this.dispatch('addToWalletsCache', {
         wallet,
-        walletStatus
+        walletStatus,
       });
       // commit('updateWalletsCache', {
       //   wallet: wallet,
@@ -218,7 +220,7 @@ export default new Vuex.Store({
       }
       //console.log('wallets', wallets);
       commit('updateWalletsCache', {
-        wallets
+        wallets,
       });
     },
     removeFromWalletsCache({ commit, state }, payload) {
@@ -236,9 +238,9 @@ export default new Vuex.Store({
       }
 
       commit('updateWalletsCache', {
-        wallets
+        wallets,
       });
-    }
+    },
   },
   getters: {
     coins(state) {
@@ -267,14 +269,14 @@ export default new Vuex.Store({
         balance: wallet.balance,
         unpaid: wallet.total_unpaid,
         paid24h: wallet.total_paid,
-        total: wallet.total_earned
+        total: wallet.total_earned,
       };
       return walletBalances;
     },
     walletEarnings(state) {
       const wallet = state.walletDetail;
       const walletEarnings = {
-        ...wallet.earnings
+        ...wallet.earnings,
       };
       console.log('earnings', wallet.earnings);
       return wallet.earnings;
@@ -284,6 +286,6 @@ export default new Vuex.Store({
       //if(state.walletStatus ==1){
       return state.walletDetail.workers;
       //}
-    }
-  }
+    },
+  },
 });

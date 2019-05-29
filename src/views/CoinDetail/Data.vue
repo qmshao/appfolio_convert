@@ -12,7 +12,7 @@
           <div>workers - {{ coinData.workers }}</div>
           <div>notes - {{ coinData.notes }}</div>
           <div>reward - {{ coinData.reward }}</div>
-          <div>height - {{ coinData.block_data.height }}</div>
+          <!-- <div>height - {{ coinData.block_data.height }}</div> -->
           <!-- <div>min ttf? - {{coinData.ttf}}</div> -->
           <div>price (sats) - {{coinData.price_sats}}</div>
           <div>exchange volume - {{coinData.exchange_volume}}</div>
@@ -21,12 +21,12 @@
           <div>confirmations - {{coinData.mature_blocks}}</div>
           <div>block time - {{coinData.block_time | readableTimeDiff('absolute')}}</div>
 
-          <div>last found block height - {{coinData.block_data.lastblockheight}}</div>
-          <div>time since found block - {{coinData.block_data.timesincelast}}</div>
-          <div>blocks/1h - {{coinData.block_data.blocks_1h}}</div>
+          <!-- <div>last found block height - {{coinData.block_data.lastblockheight}}</div> -->
+          <!-- <div>time since found block - {{coinData.block_data.timesincelast}}</div> -->
+          <!-- <div>blocks/1h - {{coinData.block_data.blocks_1h}}</div>
           <div>blocks/1d - {{coinData.block_data.blocks_1d}}</div>
           <div>blocks/7d - {{coinData.block_data.blocks_7d}}</div>
-          <div>blocks/30d - {{coinData.block_data.blocks_30d}}</div>
+          <div>blocks/30d - {{coinData.block_data.blocks_30d}}</div>-->
         </div>
         <div class="link-list">
           <h5 v-if="coinData.link_site">
@@ -134,6 +134,7 @@ export default {
     },
     coinData() {
       if (this.$store.state.coinDetailStatus == 1) {
+        console.log(this.$store.getters.coinDetail);
         return this.$store.getters.coinDetail;
       }
     }

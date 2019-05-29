@@ -11,12 +11,12 @@
 
     <div class="col-lg-4">
       <!-- <card class="card" :header-classes="{ 'text-right': isRTL }"> -->
-      <card class="card">
+      <div class="card">
         <h5 slot="header" class="card-title">Detail Info</h5>
         <div class="table-responsive">
           <coin-data></coin-data>
         </div>
-      </card>
+      </div>
     </div>
   </div>
 </template>
@@ -30,16 +30,22 @@ export default {
     // CoinsSummary,
     CoinData
   },
-  props: ["coin"],
-  watch: {
-    coin: {
-      immediate: true,
-      handler() {
-        this.dispatches();
-        //this.timer = setInterval(this.dispatches, 60000);
-      }
-    }
+  computed: {
+    // coin() {
+    //   console.log(this.$route.params.coin);
+    //   return this.$route.params.coin;
+    // }
   },
+  props: ["coin"],
+  // watch: {
+  //   coin: {
+  //     immediate: true,
+  //     handler() {
+  //       this.dispatches();
+  //       //this.timer = setInterval(this.dispatches, 60000);
+  //     }
+  //   }
+  // },
 
   beforeDestroy() {
     clearInterval(this.timer);
@@ -54,7 +60,9 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("fetchCoinsSummary");
+    // this.$store.dispatch("fetchCoinsSummary");
+    console.log(this.coin);
+    this.$store.dispatch("fetchCoinDetail", { coinDetail: this.coin });
 
     // this.i18n = this.$i18n;
     // console.log('rtl', this.$route.query.enableRTL);
@@ -64,14 +72,6 @@ export default {
     // }
     // //this.initBigChart(0);
   }
-  // computed: {
-  //   enableRTL() {
-  //     return this.$route.query.enableRTL;
-  //   },
-  //   isRTL() {
-  //     return this.$rtl.isRTL;
-  //   }
-  // },
 
   // beforeDestroy() {
   //   if (this.$rtl.isRTL) {

@@ -187,14 +187,14 @@ export default {
     goToDetailCoin: function(coin) {
       // clear the filter
       this.filterKey = "";
-      if (this.selectedCoin == coin.toUpperCase()) {
-        this.$router.push({
-          name: "Coins"
-        });
-        return;
-      }
+      // if (this.selectedCoin == coin.toUpperCase()) {
+      //   this.$router.push({
+      //     name: "Coins"
+      //   });
+      //   return;
+      // }
       this.$router.push({
-        name: "Coins",
+        name: "coinDetail",
         params: { coin: coin.toUpperCase() }
       });
     }
