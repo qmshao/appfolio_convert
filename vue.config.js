@@ -4,8 +4,8 @@ function resolveSrc(_path) {
   return path.join(__dirname, _path);
 }
 
-var port = 2680;
-var public = 'ice.broke-it.net';
+var port = 3000;
+var public = 'lvmgmtllc.com';
 // vue.config.js
 module.exports = {
   //lintOnSave: true,

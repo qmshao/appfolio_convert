@@ -11,10 +11,7 @@
 // const Wallet = () =>
 //   import(/* webpackChunkName: "wallet" */ 'src/pages/Wallet/Wallet.vue');
 const Home = () => import('../views/Home.vue');
-const Dashboard = () => import('../views/Dashboard/Dashboard.vue');
-const Coin = () => import('../views/CoinSummary/CoinsSummary.vue');
-const CoinDetail = () => import('../views/CoinDetail/CoinDetail.vue');
-const Wallet = () => import('../views/Wallet/Wallet.vue');
+
 const About = () => import('../views/About.vue');
 const routes = [
   {
@@ -23,28 +20,6 @@ const routes = [
     component: Home,
   },
 
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard,
-  },
-  {
-    path: '/coin',
-    name: 'coin',
-    component: Coin,
-  },
-  {
-    path: '/coin/:coin',
-    name: 'coinDetail',
-    props: true,
-    component: CoinDetail,
-  },
-  {
-    path: '/wallet/:wallet?',
-    name: 'wallet',
-    props: true,
-    component: Wallet,
-  },
   {
     path: '/about',
     name: 'about',

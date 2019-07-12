@@ -4,14 +4,14 @@
 @import 'setup/themes';
 @import 'setup/typography.scss';
 @import 'setup/variables.scss';
-
+// @import 'setup/vuetify.scss';
 html {
   // box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
-  color: blue;
+  // color: blue;
 }
 
 * {
-  color: blue;
+  // color: blue;
   // margin: 100px;
 }
